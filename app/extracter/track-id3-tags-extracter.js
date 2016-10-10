@@ -17,6 +17,26 @@ function extractAlbumFromFile(filePath) {
   console.log(data);
 };
 
+// My great function
+function extractAlbumFromFile(filePath) {
+    return new Promise(function (resolve, reject) {
+        var data = mediaInfoParser.execAsync(filePath).
+        then(function(obj) {
+            for (var i = 0; i < obj.file.track.length; i++) {
+                if (obj.file.track[i]._type === 'General') {
+                  resolve({
+                    "name": obj.file.track[i].album
+                  });
+                }
+            }
+          });
+        })
+      ;
+    });
+
+  console.log(data);
+};
+
 function extractArtistFromFile(filePath) {
 
   return mediaInfoParser.execAsync(filePath).
